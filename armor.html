@@ -16,19 +16,20 @@
     </script>
   </head>
   <body onload="run(); onBodyLoad()">
-    <h1>Arcane Odyssey Armor Builds for V1.14</h1>
+    <h1>Arcane Odyssey Armor Build</h1>
 	  <h3>Just added the newer items until <b>myaltaccountsthis</b> updates his code to include new items and stats.</h3>
 	  <div>Dm Sleepy on Discord if anything is wrong with this version: <a target="_blank" href="https://www.discordapp.com/users/132306309629476864" title="alexschuyler">Discord</a></div>
     <button id="visibility-button" class="toggle" onclick="toggleInfo(this)">Hide Info</button>
     <br>
     <div id="info">
       <div>
-        Copied from <b>myaltaccountsthis</b> (<a target="_blank" href="https://www.discordapp.com/users/348557609831497730" title="myaltaccountsthis">Discord</a> | <a target="_blank" href="https://www.youtube.com/myaltaccountsthis" title="myaltaccountsthis">YouTube</a>)
+        Made by <b>myaltaccountsthis</b> (<a target="_blank" href="https://www.discordapp.com/users/348557609831497730" title="myaltaccountsthis">Discord</a> | <a target="_blank" href="https://www.youtube.com/myaltaccountsthis" title="myaltaccountsthis">YouTube</a>)
       </div>
       <br>
       <div><b>Armor:</b> list of required armor pieces</div>
       <div><b>Weights:</b> change them to prioritize certain stats</div>
       <div><b>Multiplier:</b> estimate advantage against unarmored opponent<br>based on pow/def and weighted secondary stats</div>
+      <div><b>Power Equivalence:</b> sum of build stats normalized to power</div>
       <div>Secondary stat curve is based on intensity curve and wiki estimates</div>
       <div>Base Multiplier only includes pow/def raw multiplier</div>
       <div>Takes about 1000ms with secondary, 100ms without</div>
@@ -104,32 +105,32 @@
         <div>
           <div class="slider">
             <label for="min-power">Power</label>
-            <input id="min-power" oninput="minChange(0, this)" name="min-power" type="range" min="0" max="1000" step="1" value="200">
-            <span><input class="input-text" id="min-power-text" oninput="minChange(0, this)" type="text" value="200"></span>
+            <input id="min-power" oninput="minChange(0, this)" name="min-power" type="range" min="0" max="250" step="1" value="30">
+            <span><input class="input-text" id="min-power-text" oninput="minChange(0, this)" type="text" value="30"></span>
           </div>
           <div class="slider">
             <label for="min-defense">Defense</label>
-            <input id="min-defense" oninput="minChange(1, this)" name="min-defense" type="range" min="0" max="5000" step="1" value="0">
-            <span><input class="input-text" id="min-defense-text" oninput="minChange(1, this)" type="text" value="0"></span>
+            <input id="min-defense" oninput="minChange(1, this)" name="min-defense" type="range" min="0" max="3000" step="1" value="300">
+            <span><input class="input-text" id="min-defense-text" oninput="minChange(1, this)" type="text" value="300"></span>
           </div>
           <div class="slider secondary">
             <label for="min-size">Size</label>
-            <input id="min-size" oninput="minChange(2, this)" name="min-size" type="range" min="0" max="1000" step="1" value="0">
+            <input id="min-size" oninput="minChange(2, this)" name="min-size" type="range" min="0" max="500" step="1" value="0">
             <span><input class="input-text" id="min-size-text" oninput="minChange(2, this)" type="text" value="0"></span>
           </div>
           <div class="slider secondary">
             <label for="min-intensity">Intensity</label>
-            <input id="min-intensity" oninput="minChange(3, this)" name="min-intensity" type="range" min="0" max="1000" step="1" value="0">
+            <input id="min-intensity" oninput="minChange(3, this)" name="min-intensity" type="range" min="0" max="500" step="1" value="0">
             <span><input class="input-text" id="min-intensity-text" oninput="minChange(3, this)" type="text" value="0"></span>
           </div>
           <div class="slider secondary">
             <label for="min-speed">Speed</label>
-            <input id="min-speed" oninput="minChange(4, this)" name="min-speed" type="range" min="0" max="1000" step="1" value="0">
+            <input id="min-speed" oninput="minChange(4, this)" name="min-speed" type="range" min="0" max="500" step="1" value="0">
             <span><input class="input-text" id="min-speed-text" oninput="minChange(4, this)" type="text" value="0"></span>
           </div>
           <div class="slider secondary">
             <label for="min-agility">Agility</label>
-            <input id="min-agility" oninput="minChange(5, this)" name="min-agility" type="range" min="0" max="1000" step="1" value="0">
+            <input id="min-agility" oninput="minChange(5, this)" name="min-agility" type="range" min="0" max="500" step="1" value="0">
             <span><input class="input-text" id="min-agility-text" oninput="minChange(5, this)" type="text" value="0"></span>
           </div>
         </div>
@@ -138,38 +139,38 @@
         <div>
           <div class="slider">
             <label for="weight-power">Power</label>
-            <input id="weight-power" oninput="weightChange(0, this)" name="weight-power" type="range" min="0" max="200" step="1" value="200">
-            <span><input class="input-text" id="weight-power-text" oninput="weightChange(0, this)" type="text" value="200"></span>
+            <input id="weight-power" oninput="weightChange(0, this)" name="weight-power" type="range" min="0" max="200" step="1" value="100">
+            <span><input class="input-text" id="weight-power-text" oninput="weightChange(0, this)" type="text" value="100"></span>
           </div>
           <div class="slider">
             <label for="weight-defense">Defense</label>
-            <input id="weight-defense" oninput="weightChange(1, this)" name="weight-defense" type="range" min="0" max="200" step="1" value="1">
-            <span><input class="input-text" id="weight-defense-text" oninput="weightChange(1, this)" type="text" value="1"></span>
+            <input id="weight-defense" oninput="weightChange(1, this)" name="weight-defense" type="range" min="0" max="200" step="1" value="100">
+            <span><input class="input-text" id="weight-defense-text" oninput="weightChange(1, this)" type="text" value="100"></span>
           </div>
           <div class="slider secondary">
             <label for="weight-size">Size</label>
-            <input id="weight-size" oninput="weightChange(2, this)" name="weight-size" type="range" min="0" max="200" step="1" value="0">
-            <span><input class="input-text" id="weight-size-text" oninput="weightChange(2, this)" type="text" value="0"></span>
+            <input id="weight-size" oninput="weightChange(2, this)" name="weight-size" type="range" min="0" max="200" step="1" value="25">
+            <span><input class="input-text" id="weight-size-text" oninput="weightChange(2, this)" type="text" value="25"></span>
           </div>
           <div class="slider secondary">
             <label for="weight-intensity">Intensity</label>
-            <input id="weight-intensity" oninput="weightChange(3, this)" name="weight-intensity" type="range" min="0" max="200" step="1" value="0">
-            <span><input class="input-text" id="weight-intensity-text" oninput="weightChange(3, this)" type="text" value="0"></span>
+            <input id="weight-intensity" oninput="weightChange(3, this)" name="weight-intensity" type="range" min="0" max="200" step="1" value="40">
+            <span><input class="input-text" id="weight-intensity-text" oninput="weightChange(3, this)" type="text" value="40"></span>
           </div>
           <div class="slider secondary">
             <label for="mode-bonus">Aura Bonus</label>
-            <input id="mode-bonus" oninput="modeBonusChange(this)" name="mode-bonus" type="range" min="0" max="40" step="1" value="0">
-            <span><input class="input-text" id="mode-bonus-text" oninput="modeBonusChange(this)" type="text" value="0"></span>
+            <input id="mode-bonus" oninput="modeBonusChange(this)" name="mode-bonus" type="range" min="0" max="40" step="1" value="20">
+            <span><input class="input-text" id="mode-bonus-text" oninput="modeBonusChange(this)" type="text" value="20"></span>
           </div>
           <div class="slider secondary">
             <label for="weight-speed">Speed</label>
-            <input id="weight-speed" oninput="weightChange(4, this)" name="weight-speed" type="range" min="0" max="200" step="1" value="0">
-            <span><input class="input-text" id="weight-speed-text" oninput="weightChange(4, this)" type="text" value="0"></span>
+            <input id="weight-speed" oninput="weightChange(4, this)" name="weight-speed" type="range" min="0" max="200" step="1" value="45">
+            <span><input class="input-text" id="weight-speed-text" oninput="weightChange(4, this)" type="text" value="45"></span>
           </div>
           <div class="slider secondary">
             <label for="weight-agility">Agility</label>
-            <input id="weight-agility" oninput="weightChange(5, this)" name="weight-agility" type="range" min="0" max="200" step="1" value="0">
-            <span><input class="input-text" id="weight-agility-text" oninput="weightChange(5, this)" type="text" value="0"></span>
+            <input id="weight-agility" oninput="weightChange(5, this)" name="weight-agility" type="range" min="0" max="200" step="1" value="40">
+            <span><input class="input-text" id="weight-agility-text" oninput="weightChange(5, this)" type="text" value="40"></span>
           </div>
         </div>
       </div>
